@@ -1,12 +1,16 @@
 package lab2
 
 import (
-	//"fmt"
+	"fmt"
 	"testing"
 )
 
 //Recursive
 const N uint64 = 45
+
+func init() {
+	fmt.Println("N =", N)
+}
 
 func Benchmark_Recursive(b *testing.B) {
 	fibonacci(N)
