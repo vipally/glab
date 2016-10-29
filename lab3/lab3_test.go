@@ -7,16 +7,26 @@ import (
 )
 
 type empty struct{}
+type withEmpty struct {
+	a uint
+	c empty
+	d int
+	b uint16
+}
 
 func TestStruct(t *testing.T) {
 	fmt.Println("empty", unsafe.Sizeof(empty{})) //空
 	fmt.Println("byte", unsafe.Sizeof(byte(0)))
 	fmt.Println("int", unsafe.Sizeof(int(0)))
+	fmt.Println("withEmpty", unsafe.Sizeof(withEmpty{}))
+	//var we withEmpty
 
 	//empty 0
 	//byte 1
 	//int 8
+	//withEmpty 24
 	//结论 空结构体size=0 是不是说不需要成员只需要类型信息的地方用empty会代价更小？
+	//最后一个字段即使不够8字节 也会补齐8字节？
 }
 
 func TestSlice(t *testing.T) {
