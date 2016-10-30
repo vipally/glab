@@ -10,12 +10,15 @@ type empty struct{}
 
 func (me empty) Hello() string { return "" }
 
+type fun func(int, int) int
+
 type withEmpty struct {
 	//a uint16
 	//c empty
 	//b uint16
 	//d, e, f, g, h byte
 	i I
+	f fun
 }
 
 type I interface {
@@ -42,6 +45,8 @@ func TestStruct(t *testing.T) {
 	//字节对齐最大为8 最小为1
 	//empty字段不占用存储空间
 	//就算内存空洞在最后，生成array的时候，也可以保证所有对象都是遵循对齐规则的
+	//iterface占用16字节 (pType，pValue两个指针)
+	//函数占用8个字节 (一个指针)
 }
 
 func TestSlice(t *testing.T) {
