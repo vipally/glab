@@ -17,8 +17,10 @@ type withEmpty struct {
 	//c empty
 	//b uint16
 	//d, e, f, g, h byte
-	i I
-	f fun
+	//	i I
+	//	f fun
+	p *int
+	b byte
 }
 
 type I interface {

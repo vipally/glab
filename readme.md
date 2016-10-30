@@ -18,4 +18,12 @@ some test code of golang
 	而采用循环和stack的算法 N=10亿 仍然毫无压力
 	
 ## lab2: Golang deep
+
+## lab3: size test
+
+## lab4: string buffer test
+
+## lab5: functor test
+
+
 	
