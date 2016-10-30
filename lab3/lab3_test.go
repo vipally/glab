@@ -7,11 +7,19 @@ import (
 )
 
 type empty struct{}
+
+func (me empty) Hello() string { return "" }
+
 type withEmpty struct {
-	a             complex64
-	c             empty
-	b             uint16
-	d, e, f, g, h byte
+	//a uint16
+	//c empty
+	//b uint16
+	//d, e, f, g, h byte
+	i I
+}
+
+type I interface {
+	Hello() string
 }
 
 func TestStruct(t *testing.T) {
@@ -20,7 +28,9 @@ func TestStruct(t *testing.T) {
 	fmt.Println("int", unsafe.Sizeof(int(0)))
 
 	var we withEmpty
+	var i I
 	fmt.Println("withEmpty", unsafe.Alignof(we), unsafe.Sizeof(we))
+	fmt.Println("interface", unsafe.Alignof(i), unsafe.Sizeof(i))
 
 	//empty 0
 	//byte 1
