@@ -31,7 +31,7 @@ func Less(left, right int) (ok bool) {
 
 //Greater
 func Great(left, right int) (ok bool) {
-	ok = right > left
+	ok = right < left
 	return
 }
 
@@ -90,11 +90,10 @@ func (me CmpObj) F(left, right int) (ok bool) {
 }
 
 var (
-	cmp1  = CreateComparer("Lesser")
-	cmp2  = GetCmpFunc("Lesser")
-	cmp3  = CMP_LESS
-	start = 0
-	N     = 100000000
+	cmp1 = CreateComparer("Lesser")
+	cmp2 = GetCmpFunc("Lesser")
+	cmp3 = CMP_LESS
+	N    = 100000000
 )
 
 func TestSize(t *testing.T) {
