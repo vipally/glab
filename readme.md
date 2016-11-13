@@ -25,5 +25,7 @@ some test code of golang
 
 ## lab5: functor test
 
+## lab6: float test
+
 
 	
