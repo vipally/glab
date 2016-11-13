@@ -26,13 +26,14 @@ func TestFloat1(t *testing.T) {
 		f := float64(u)
 		fi := int32(f)
 		err := oki != fi
-		fmt.Printf("x=0x%08X\tu=%10d\toki=%11d\tf=%12.1f\tfi=%11d\t err=%v\n", u, u, oki, f, fi, err)
+		fmt.Printf("x=0x%08X u=%10d oki=%11d f=%12.1f fi=%11d  err=%v\n",
+			u, u, oki, f, fi, err)
 	}
-	//x=0x7FFFFFFE	u=2147483646	oki= 2147483646	f=2147483646.0	fi= 2147483646	 err=false
-	//x=0x7FFFFFFF	u=2147483647	oki= 2147483647	f=2147483647.0	fi= 2147483647	 err=false
-	//x=0x80000000	u=2147483648	oki=-2147483648	f=2147483648.0	fi=-2147483648	 err=false
-	//x=0x80000001	u=2147483649	oki=-2147483647	f=2147483649.0	fi=-2147483648	 err=true
-	//x=0xFF000000	u=4278190080	oki=  -16777216	f=4278190080.0	fi=-2147483648	 err=true
+	//x=0x7FFFFFFE u=2147483646 oki= 2147483646 f=2147483646.0 fi= 2147483646  err=false
+	//x=0x7FFFFFFF u=2147483647 oki= 2147483647 f=2147483647.0 fi= 2147483647  err=false
+	//x=0x80000000 u=2147483648 oki=-2147483648 f=2147483648.0 fi=-2147483648  err=false
+	//x=0x80000001 u=2147483649 oki=-2147483647 f=2147483649.0 fi=-2147483648  err=true
+	//x=0xFF000000 u=4278190080 oki=  -16777216 f=4278190080.0 fi=-2147483648  err=true
 }
 
 func TestFloat2(t *testing.T) {
@@ -54,17 +55,18 @@ func TestFloat2(t *testing.T) {
 		u := uint32(f)
 		oki := int32(u)
 		err := fi != oki
-		fmt.Printf("x=0x%08X\tf=%13.1f\tu=%10d\tfi=%11d\toki=%11d\terr=%v\n", u, f, u, fi, oki, err)
+		fmt.Printf("x=0x%08X f=%13.1f u=%10d fi=%11d oki=%11d err=%v\n",
+			u, f, u, fi, oki, err)
 	}
-	//x=0x7FFFFFFE	f= 2147483646.0	u=2147483646	fi= 2147483646	oki= 2147483646	err=false
-	//x=0x7FFFFFFF	f= 2147483647.0	u=2147483647	fi= 2147483647	oki= 2147483647	err=false
-	//x=0xFFFFFFFF	f=         -1.0	u=4294967295	fi=         -1	oki=         -1	err=false
-	//x=0xFFFFFFFE	f=         -2.0	u=4294967294	fi=         -2	oki=         -2	err=false
-	//x=0x80000000	f= 2147483648.0	u=2147483648	fi=-2147483648	oki=-2147483648	err=false
-	//x=0x80000001	f= 2147483649.0	u=2147483649	fi=-2147483648	oki=-2147483647	err=true
-	//x=0x80000002	f= 2147483650.0	u=2147483650	fi=-2147483648	oki=-2147483646	err=true
-	//x=0x80000002	f=36507222018.0	u=2147483650	fi=-2147483648	oki=-2147483646	err=true
-	//x=0xFF000000	f= 4278190080.0	u=4278190080	fi=-2147483648	oki=  -16777216	err=true
-	//x=0xFFFFFFFE	f= 4294967294.0	u=4294967294	fi=-2147483648	oki=         -2	err=true
-	//x=0xFFFFFFFF	f= 4294967295.0	u=4294967295	fi=-2147483648	oki=         -1	err=true
+	//x=0x7FFFFFFE f= 2147483646.0 u=2147483646 fi= 2147483646 oki= 2147483646 err=false
+	//x=0x7FFFFFFF f= 2147483647.0 u=2147483647 fi= 2147483647 oki= 2147483647 err=false
+	//x=0xFFFFFFFF f=         -1.0 u=4294967295 fi=         -1 oki=         -1 err=false
+	//x=0xFFFFFFFE f=         -2.0 u=4294967294 fi=         -2 oki=         -2 err=false
+	//x=0x80000000 f= 2147483648.0 u=2147483648 fi=-2147483648 oki=-2147483648 err=false
+	//x=0x80000001 f= 2147483649.0 u=2147483649 fi=-2147483648 oki=-2147483647 err=true
+	//x=0x80000002 f= 2147483650.0 u=2147483650 fi=-2147483648 oki=-2147483646 err=true
+	//x=0x80000002 f=36507222018.0 u=2147483650 fi=-2147483648 oki=-2147483646 err=true
+	//x=0xFF000000 f= 4278190080.0 u=4278190080 fi=-2147483648 oki=  -16777216 err=true
+	//x=0xFFFFFFFE f= 4294967294.0 u=4294967294 fi=-2147483648 oki=         -2 err=true
+	//x=0xFFFFFFFF f= 4294967295.0 u=4294967295 fi=-2147483648 oki=         -1 err=true
 }
