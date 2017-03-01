@@ -28,4 +28,8 @@ func TestInterface(t *testing.T) {
 	var i Iter = new(child)
 	i.Do1()
 	i.Do2()
+
+	//father Do1
+	//child Do1
+	//father Do2
 }
