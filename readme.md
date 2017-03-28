@@ -28,6 +28,8 @@ some test code of golang
 ## lab6: float test
 
 ## lab7: interface inherit test
+
+## lab8: interface nil test
 含有匿名成员的结构体 可以由父对象默认实现某个接口 达到实现某接口默认行为
 子对象可以实现该函数 覆盖父对象的默认行为
 
