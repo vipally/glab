@@ -19,7 +19,7 @@ func Benchmark_Loop(b *testing.B) {
 	fibonacci2(N)
 }
 func Benchmark_Stack(b *testing.B) {
-	fibonacci2(N)
+	fibonacci3(N)
 }
 
 func fibonacci2(n uint64) uint64 {
