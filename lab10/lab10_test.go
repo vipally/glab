@@ -79,11 +79,12 @@ func R2(n int, t *[]int, depth int) (int, int) { //非递归算法
 }
 
 func r2(n, i int, t *[]int, depth int) (int, int) {
-	if i == 1 {
+	switch {
+	case i == 1:
 		return 100, depth
-	}
-	if i == n {
+	case i == n:
 		return 0, depth
+	default:
+		return R2(n-i+1, t, depth+1)
 	}
-	return R2(n-i+1, t, depth+1)
 }
