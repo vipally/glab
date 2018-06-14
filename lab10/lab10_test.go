@@ -7,6 +7,11 @@ import (
 
 const (
 	use_recursive = false //是否使用递归算法
+
+)
+
+var (
+	recursiveCnt = 0
 )
 
 //问题：
@@ -20,15 +25,17 @@ const (
 
 func TestR(t *testing.T) {
 	if use_recursive {
-		N := int(50)
-		x, maxDepth := R(N, 1)
-		fmt.Println("recursive:", N, x, maxDepth)
+		N := int(32)
+		for i := 1; i <= N; i++ {
+			x, maxDepth := R(i, 1)
+			fmt.Println("recursive:", i, x, maxDepth, recursiveCnt)
+		}
 	} else {
 		N := int(5000)
 		t := []int{}
 		for i := 1; i <= N; i++ {
 			x, maxDepth := R2(i, &t, 1)
-			fmt.Println("no recursive:", i, x, maxDepth)
+			fmt.Println("no recursive:", i, x, maxDepth, recursiveCnt)
 		}
 	}
 }
@@ -36,6 +43,10 @@ func TestR(t *testing.T) {
 func R(n int, depth int) (int, int) { //递归算法 算不出来
 	x := int(0)
 	maxDepth := 1
+	if depth == 1 {
+		recursiveCnt = 0
+	}
+	recursiveCnt++
 	for i := int(1); i <= n; i++ {
 		xx, md := r(n, i, depth+1)
 		x += xx
@@ -47,6 +58,7 @@ func R(n int, depth int) (int, int) { //递归算法 算不出来
 }
 
 func r(n, i int, depth int) (int, int) {
+	recursiveCnt++
 	switch {
 	case i == 1:
 		return 100, depth
@@ -61,6 +73,10 @@ func R2(n int, t *[]int, depth int) (int, int) { //非递归算法
 	if depth > 3 { //这个也是个递归写法 但是t的存在 可以保证递归深度绝对不会超过3层
 		panic(depth)
 	}
+	if depth == 1 {
+		recursiveCnt = 0
+	}
+	recursiveCnt++
 	if len(*t) > n { //已经知道结果的 不用算了 直接返回
 		return (*t)[n-1], depth
 	}
@@ -79,6 +95,7 @@ func R2(n int, t *[]int, depth int) (int, int) { //非递归算法
 }
 
 func r2(n, i int, t *[]int, depth int) (int, int) {
+	recursiveCnt++
 	switch {
 	case i == 1:
 		return 100, depth
