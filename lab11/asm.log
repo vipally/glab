@@ -1,0 +1,175 @@
+# github.com/vipally/glab/lab11
+"".main STEXT size=165 args=0x0 locals=0x18
+	0x0000 00000 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	TEXT	"".main(SB), $24-0
+	0x0000 00000 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	MOVQ	TLS, CX
+	0x0009 00009 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	MOVQ	(CX)(TLS*2), CX
+	0x0010 00016 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	CMPQ	SP, 16(CX)
+	0x0014 00020 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	JLS	155
+	0x001a 00026 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	SUBQ	$24, SP
+	0x001e 00030 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	MOVQ	BP, 16(SP)
+	0x0023 00035 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	LEAQ	16(SP), BP
+	0x0028 00040 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	FUNCDATA	$0, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
+	0x0028 00040 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	FUNCDATA	$1, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
+	0x0028 00040 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	PCDATA	$0, $0
+	0x0028 00040 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	CALL	runtime.printlock(SB)
+	0x002d 00045 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	LEAQ	go.string."mode=release\n"(SB), AX
+	0x0034 00052 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	MOVQ	AX, (SP)
+	0x0038 00056 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	MOVQ	$13, 8(SP)
+	0x0041 00065 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	PCDATA	$0, $0
+	0x0041 00065 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	CALL	runtime.printstring(SB)
+	0x0046 00070 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	PCDATA	$0, $0
+	0x0046 00070 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:25)	CALL	runtime.printunlock(SB)
+	0x004b 00075 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	PCDATA	$0, $0
+	0x004b 00075 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	CALL	runtime.printlock(SB)
+	0x0050 00080 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	LEAQ	go.string."os=windows\n"(SB), AX
+	0x0057 00087 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	MOVQ	AX, (SP)
+	0x005b 00091 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	MOVQ	$11, 8(SP)
+	0x0064 00100 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	PCDATA	$0, $0
+	0x0064 00100 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	CALL	runtime.printstring(SB)
+	0x0069 00105 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	PCDATA	$0, $0
+	0x0069 00105 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:33)	CALL	runtime.printunlock(SB)
+	0x006e 00110 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	PCDATA	$0, $0
+	0x006e 00110 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	CALL	runtime.printlock(SB)
+	0x0073 00115 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	LEAQ	go.string."language=Chinese\n"(SB), AX
+	0x007a 00122 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	MOVQ	AX, (SP)
+	0x007e 00126 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	MOVQ	$17, 8(SP)
+	0x0087 00135 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	PCDATA	$0, $0
+	0x0087 00135 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	CALL	runtime.printstring(SB)
+	0x008c 00140 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	PCDATA	$0, $0
+	0x008c 00140 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:43)	CALL	runtime.printunlock(SB)
+	0x0091 00145 (<unknown line number>)	MOVQ	16(SP), BP
+	0x0096 00150 (<unknown line number>)	ADDQ	$24, SP
+	0x009a 00154 (<unknown line number>)	RET
+	0x009b 00155 (<unknown line number>)	NOP
+	0x009b 00155 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	PCDATA	$0, $-1
+	0x009b 00155 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x00a0 00160 (E:\gocode\src\github.com\vipally\glab\lab11\lab11.go:11)	JMP	0
+	0x0000 65 48 8b 0c 25 28 00 00 00 48 8b 89 00 00 00 00  eH..%(...H......
+	0x0010 48 3b 61 10 0f 86 81 00 00 00 48 83 ec 18 48 89  H;a.......H...H.
+	0x0020 6c 24 10 48 8d 6c 24 10 e8 00 00 00 00 48 8d 05  l$.H.l$......H..
+	0x0030 00 00 00 00 48 89 04 24 48 c7 44 24 08 0d 00 00  ....H..$H.D$....
+	0x0040 00 e8 00 00 00 00 e8 00 00 00 00 e8 00 00 00 00  ................
+	0x0050 48 8d 05 00 00 00 00 48 89 04 24 48 c7 44 24 08  H......H..$H.D$.
+	0x0060 0b 00 00 00 e8 00 00 00 00 e8 00 00 00 00 e8 00  ................
+	0x0070 00 00 00 48 8d 05 00 00 00 00 48 89 04 24 48 c7  ...H......H..$H.
+	0x0080 44 24 08 11 00 00 00 e8 00 00 00 00 e8 00 00 00  D$..............
+	0x0090 00 48 8b 6c 24 10 48 83 c4 18 c3 e8 00 00 00 00  .H.l$.H.........
+	0x00a0 e9 5b ff ff ff                                   .[...
+	rel 12+4 t=16 TLS+0
+	rel 41+4 t=8 runtime.printlock+0
+	rel 48+4 t=15 go.string."mode=release\n"+0
+	rel 66+4 t=8 runtime.printstring+0
+	rel 71+4 t=8 runtime.printunlock+0
+	rel 76+4 t=8 runtime.printlock+0
+	rel 83+4 t=15 go.string."os=windows\n"+0
+	rel 101+4 t=8 runtime.printstring+0
+	rel 106+4 t=8 runtime.printunlock+0
+	rel 111+4 t=8 runtime.printlock+0
+	rel 118+4 t=15 go.string."language=Chinese\n"+0
+	rel 136+4 t=8 runtime.printstring+0
+	rel 141+4 t=8 runtime.printunlock+0
+	rel 156+4 t=8 runtime.morestack_noctxt+0
+"".init STEXT size=86 args=0x0 locals=0x8
+	0x0000 00000 (<autogenerated>:1)	TEXT	"".init(SB), $8-0
+	0x0000 00000 (<autogenerated>:1)	MOVQ	TLS, CX
+	0x0009 00009 (<autogenerated>:1)	MOVQ	(CX)(TLS*2), CX
+	0x0010 00016 (<autogenerated>:1)	CMPQ	SP, 16(CX)
+	0x0014 00020 (<autogenerated>:1)	JLS	79
+	0x0016 00022 (<autogenerated>:1)	SUBQ	$8, SP
+	0x001a 00026 (<autogenerated>:1)	MOVQ	BP, (SP)
+	0x001e 00030 (<autogenerated>:1)	LEAQ	(SP), BP
+	0x0022 00034 (<autogenerated>:1)	FUNCDATA	$0, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
+	0x0022 00034 (<autogenerated>:1)	FUNCDATA	$1, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
+	0x0022 00034 (<autogenerated>:1)	MOVBLZX	"".initdone·(SB), AX
+	0x0029 00041 (<autogenerated>:1)	CMPB	AL, $1
+	0x002b 00043 (<autogenerated>:1)	JLS	54
+	0x002d 00045 (<autogenerated>:1)	MOVQ	(SP), BP
+	0x0031 00049 (<autogenerated>:1)	ADDQ	$8, SP
+	0x0035 00053 (<autogenerated>:1)	RET
+	0x0036 00054 (<autogenerated>:1)	JNE	63
+	0x0038 00056 (<autogenerated>:1)	PCDATA	$0, $0
+	0x0038 00056 (<autogenerated>:1)	CALL	runtime.throwinit(SB)
+	0x003d 00061 (<autogenerated>:1)	UNDEF
+	0x003f 00063 (<autogenerated>:1)	MOVB	$2, "".initdone·(SB)
+	0x0046 00070 (<autogenerated>:1)	MOVQ	(SP), BP
+	0x004a 00074 (<autogenerated>:1)	ADDQ	$8, SP
+	0x004e 00078 (<autogenerated>:1)	RET
+	0x004f 00079 (<autogenerated>:1)	NOP
+	0x004f 00079 (<autogenerated>:1)	PCDATA	$0, $-1
+	0x004f 00079 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
+	0x0054 00084 (<autogenerated>:1)	JMP	0
+	0x0000 65 48 8b 0c 25 28 00 00 00 48 8b 89 00 00 00 00  eH..%(...H......
+	0x0010 48 3b 61 10 76 39 48 83 ec 08 48 89 2c 24 48 8d  H;a.v9H...H.,$H.
+	0x0020 2c 24 0f b6 05 00 00 00 00 3c 01 76 09 48 8b 2c  ,$.......<.v.H.,
+	0x0030 24 48 83 c4 08 c3 75 07 e8 00 00 00 00 0f 0b c6  $H....u.........
+	0x0040 05 00 00 00 00 02 48 8b 2c 24 48 83 c4 08 c3 e8  ......H.,$H.....
+	0x0050 00 00 00 00 eb aa                                ......
+	rel 12+4 t=16 TLS+0
+	rel 37+4 t=15 "".initdone·+0
+	rel 57+4 t=8 runtime.throwinit+0
+	rel 65+4 t=15 "".initdone·+-1
+	rel 80+4 t=8 runtime.morestack_noctxt+0
+go.string."mode=release" SRODATA dupok size=12
+	0x0000 6d 6f 64 65 3d 72 65 6c 65 61 73 65              mode=release
+go.string."mode=release\n" SRODATA dupok size=13
+	0x0000 6d 6f 64 65 3d 72 65 6c 65 61 73 65 0a           mode=release.
+go.string."windows" SRODATA dupok size=7
+	0x0000 77 69 6e 64 6f 77 73                             windows
+go.string."os=windows" SRODATA dupok size=10
+	0x0000 6f 73 3d 77 69 6e 64 6f 77 73                    os=windows
+go.string."os=windows\n" SRODATA dupok size=11
+	0x0000 6f 73 3d 77 69 6e 64 6f 77 73 0a                 os=windows.
+go.string."os=linux" SRODATA dupok size=8
+	0x0000 6f 73 3d 6c 69 6e 75 78                          os=linux
+go.string."os=linux\n" SRODATA dupok size=9
+	0x0000 6f 73 3d 6c 69 6e 75 78 0a                       os=linux.
+go.string."CHN" SRODATA dupok size=3
+	0x0000 43 48 4e                                         CHN
+go.string."language=Chinese" SRODATA dupok size=16
+	0x0000 6c 61 6e 67 75 61 67 65 3d 43 68 69 6e 65 73 65  language=Chinese
+go.string."language=Chinese\n" SRODATA dupok size=17
+	0x0000 6c 61 6e 67 75 61 67 65 3d 43 68 69 6e 65 73 65  language=Chinese
+	0x0010 0a                                               .
+go.string."language=English" SRODATA dupok size=16
+	0x0000 6c 61 6e 67 75 61 67 65 3d 45 6e 67 6c 69 73 68  language=English
+go.string."language=English\n" SRODATA dupok size=17
+	0x0000 6c 61 6e 67 75 61 67 65 3d 45 6e 67 6c 69 73 68  language=English
+	0x0010 0a                                               .
+go.string."language=Japanese" SRODATA dupok size=17
+	0x0000 6c 61 6e 67 75 61 67 65 3d 4a 61 70 61 6e 65 73  language=Japanes
+	0x0010 65                                               e
+go.string."language=Japanese\n" SRODATA dupok size=18
+	0x0000 6c 61 6e 67 75 61 67 65 3d 4a 61 70 61 6e 65 73  language=Japanes
+	0x0010 65 0a                                            e.
+go.string."language=Vietnamese" SRODATA dupok size=19
+	0x0000 6c 61 6e 67 75 61 67 65 3d 56 69 65 74 6e 61 6d  language=Vietnam
+	0x0010 65 73 65                                         ese
+go.string."language=Vietnamese\n" SRODATA dupok size=20
+	0x0000 6c 61 6e 67 75 61 67 65 3d 56 69 65 74 6e 61 6d  language=Vietnam
+	0x0010 65 73 65 0a                                      ese.
+go.loc."".main SDWARFLOC size=0
+go.info."".main SDWARFINFO size=33
+	0x0000 02 22 22 2e 6d 61 69 6e 00 00 00 00 00 00 00 00  ."".main........
+	0x0010 00 00 00 00 00 00 00 00 00 01 9c 00 00 00 00 01  ................
+	0x0020 00                                               .
+	rel 9+8 t=1 "".main+0
+	rel 17+8 t=1 "".main+165
+	rel 27+4 t=29 gofile..E:\gocode\src\github.com\vipally\glab\lab11\lab11.go+0
+go.range."".main SDWARFRANGE size=0
+go.isstmt."".main SymKind(11) size=0
+	0x0000 04 2d 01 07 02 1c 01 07 02 1c 01 07 02 17 01 0a  .-..............
+	0x0010 02 0a 00                                         ...
+go.loc."".init SDWARFLOC size=0
+go.info."".init SDWARFINFO size=33
+	0x0000 02 22 22 2e 69 6e 69 74 00 00 00 00 00 00 00 00  ."".init........
+	0x0010 00 00 00 00 00 00 00 00 00 01 9c 00 00 00 00 01  ................
+	0x0020 00                                               .
+	rel 9+8 t=1 "".init+0
+	rel 17+8 t=1 "".init+86
+	rel 27+4 t=29 gofile..<autogenerated>+0
+go.range."".init SDWARFRANGE size=0
+go.isstmt."".init SymKind(11) size=0
+	0x0000 04 56 00                                         .V.
+"".initdone· SNOPTRBSS size=1
+gclocals·33cdeccccebe80329f1fdbee7f5874cb SRODATA dupok size=8
+	0x0000 01 00 00 00 00 00 00 00                          ........

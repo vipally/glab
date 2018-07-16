@@ -4,6 +4,8 @@
 //test "constant branch optimization"
 //constexpr
 
+//go build -gcflags -S > asm.log 2>&1
+
 package main
 
 func main() {
