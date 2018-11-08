@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os/exec"
 	"time"
 )
 
@@ -14,13 +15,24 @@ func fmtTime(t time.Time) time.Time {
 	fmtT, _ := time.ParseInLocation(fmt_, t.Format(fmt_), time.Local)
 	return fmtT
 }
+func modifySystime(dur int) {
+	fmt.Println("modifySystime", dur)
+	now := time.Now()
+	dest := now.Add(time.Duration(dur) * time.Second)
+	para := fmt.Sprintf("%02d:%02d:02d", dest.Hour(), dest.Minute(), dest.Second())
+	p := exec.Command("time", para)
+	err := p.Run()
+	if err != nil {
+		fmt.Println(err)
+	}
+}
 
 func main() {
 	sysNow := time.Now()
 	start = sysNow
 	myNow := fmtTime(sysNow)
-	fmt.Printf("sysNow: %-60s %#v\n", sysNow, timeStruct(sysNow))
-	fmt.Printf("myNow : %-60s %#v\n", myNow, timeStruct(myNow))
+	fmt.Printf("sysNow: %-60s %#v\n", sysNow.String(), timeStruct(sysNow))
+	fmt.Printf("myNow : %-60s %#v\n", myNow.String(), timeStruct(myNow))
 
 	d := time.Second * 10
 	dest := sysNow.Add(d)
@@ -29,8 +41,9 @@ func main() {
 
 	t := time.NewTimer(d)
 	//modify system time here...
+	modifySystime(-3)
 	after := <-t.C
-	fmt.Printf("after: %-60s %#v\n", after, timeStruct(after))
+	fmt.Printf("after: %-60s %#v\n", after.String(), timeStruct(after))
 	fmt.Printf("diffSysNow: %s\n", after.Sub(sysNow)) //not rely to sysytem time
 	fmt.Printf("diffMyNow: %s\n", after.Sub(myNow))   //rely to system time
 
