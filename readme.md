@@ -37,7 +37,7 @@ some test code of golang
 
 ## lab10: 递归的危害
 
-## lab11: constexp 条件编译优化选项
+## lab11: constant branch optimization 常量条件编译优化
 
 
 	

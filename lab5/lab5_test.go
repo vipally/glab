@@ -124,6 +124,10 @@ func Benchmark_Obj(b *testing.B) {
 //Benchmark_Interface-4   	1000000000	         0.55 ns/op
 //Benchmark_Func-4        	2000000000	         0.19 ns/op
 //Benchmark_Obj-4         	2000000000	         0.24 ns/op
+
+//Benchmark_Interface-4   	1000000000	         0.26 ns/op
+//Benchmark_Func-4        	2000000000	         0.10 ns/op
+//Benchmark_Obj-4         	1000000000	         0.25 ns/op
 //
 //结论：
 //用interface实现多态，会占用两个指针(16字节空间) 执行效率上 大概慢一倍
