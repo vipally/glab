@@ -19,8 +19,8 @@ func modifySystime(dur int) {
 	fmt.Println("modifySystime", dur)
 	now := time.Now()
 	dest := now.Add(time.Duration(dur) * time.Second)
-	para := fmt.Sprintf("%02d:%02d:02d", dest.Hour(), dest.Minute(), dest.Second())
-	p := exec.Command("time", para)
+	para := fmt.Sprintf("%02d:%02d:%02d", dest.Hour(), dest.Minute(), dest.Second())
+	p := exec.Command("cmd", "/C", "time", para)
 	err := p.Run()
 	if err != nil {
 		fmt.Println(err)
@@ -60,7 +60,7 @@ func main() {
 
 func afterFunc() {
 	t := time.Now()
-	fmt.Printf("after: %-60s %#v\n", t, timeStruct(t)) //10second,but when system time change during sleep, real time is not correct
+	fmt.Printf("afterf: %-60s %#v\n", t, timeStruct(t)) //10second,but when system time change during sleep, real time is not correct
 	fmt.Println("logic diff", t.Sub(start).String())
 	myStart := fmtTime(start)
 	fmt.Println("real diff", t.Sub(myStart).String())
