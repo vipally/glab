@@ -12,7 +12,7 @@ import (
 const (
 	mps           = 20
 	finishSecs    = 10
-	readerCount   = 1000
+	readerCount   = 10
 	busyCount     = 50
 	schduleInLock = true
 )
@@ -25,6 +25,7 @@ var (
 )
 
 func TestMutex1WnR(t *testing.T) {
+	return
 	start := time.Now()
 	fmt.Println(start, "TestMutex1WnR start")
 	wg.Add(1 + readerCount)
@@ -126,6 +127,7 @@ func chW() {
 	}
 	t := time.NewTicker(time.Second / mps)
 	fmsg := func(f int) {
+		fmt.Println("fmsg", f)
 		for i := len(chs) - 1; i >= 0; i-- {
 			chs[i] <- f
 		}
@@ -135,11 +137,10 @@ func chW() {
 		case <-t.C:
 			frame++
 			if schduleInLock && frame%mps == 0 {
-				costLongTimeAndGosched()
 				fmsg(frame)
+				costLongTimeAndGosched()
 			}
 			if frame == finishSecs*mps {
-				fmsg(frame)
 				wg.Done()
 				return
 			}
@@ -151,6 +152,7 @@ func chR(id int) {
 	for {
 		select {
 		case f := <-chs[id]:
+			fmt.Println("chR", id, f)
 			if schduleInLock && f%mps == 0 {
 				costLongTimeAndGosched()
 			}
