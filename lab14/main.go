@@ -23,6 +23,10 @@ func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
+// TestMutex1WnR start time=2018-11-27 21:09:34, finishSecs=300 readerCount=2000,busyCount=50
+// 2018-11-27 21:15:05.8786637 +0800 CST m=+331.694971901 TestMutex1WnR fnish,cost  300 -> 5m31.6899716s
+// TestMutex1WnR start time=2018-11-27 21:15:05, finishSecs=300 readerCount=2000,busyCount=50
+// 2018-11-27 21:20:44.4450285 +0800 CST m=+670.261336701 TestChannel1WnR fnish,cost  300 -> 5m38.5663648s
 func main() {
 	Mutex1WnR()
 	Channel1WnR()
