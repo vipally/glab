@@ -1,21 +1,32 @@
-package lab14
+package main
 
 import (
 	"fmt"
 	"math/big"
 	"runtime"
 	"sync"
-	"testing"
 	"time"
 )
 
 const (
 	mps           = 20
-	finishSecs    = 10
-	readerCount   = 10
+	finishSecs    = 300
+	readerCount   = 2000
 	busyCount     = 50
 	schduleInLock = true
 )
+
+func init() {
+	for i := len(chs) - 1; i >= 0; i-- {
+		chs[i] = make(chan int, 1)
+	}
+	runtime.GOMAXPROCS(runtime.NumCPU())
+}
+
+func main() {
+	Mutex1WnR()
+	Channel1WnR()
+}
 
 var (
 	frame int
@@ -24,10 +35,11 @@ var (
 	chs   [readerCount]chan int
 )
 
-func TestMutex1WnR(t *testing.T) {
-	return
+func Mutex1WnR() {
+	//return
+	frame = 0
 	start := time.Now()
-	fmt.Println(start, "TestMutex1WnR start")
+	fmt.Printf("TestMutex1WnR start time=%s, finishSecs=%d readerCount=%d,busyCount=%d\n", start.Format("2006-01-02 15:04:05"), finishSecs, readerCount, busyCount)
 	wg.Add(1 + readerCount)
 	go w()
 	for i := 1; i <= readerCount; i++ {
@@ -105,14 +117,15 @@ func busy(id int) {
 ///////////////////////////////////////////////////////////////
 //channel
 
-func TestChannel1WnR(t *testing.T) {
+func Channel1WnR() {
+	frame = 0
 	start := time.Now()
-	fmt.Println(start, "TestChannel1WnR start")
+	fmt.Printf("TestMutex1WnR start time=%s, finishSecs=%d readerCount=%d,busyCount=%d\n", start.Format("2006-01-02 15:04:05"), finishSecs, readerCount, busyCount)
 	wg.Add(1 + readerCount)
-	go chW()
 	for i := 0; i < readerCount; i++ {
 		go chR(i)
 	}
+	go chW()
 	for i := 1; i <= busyCount; i++ {
 		go busy(i)
 	}
@@ -122,12 +135,9 @@ func TestChannel1WnR(t *testing.T) {
 }
 
 func chW() {
-	for i := len(chs) - 1; i >= 0; i-- {
-		chs[i] = make(chan int, 2)
-	}
 	t := time.NewTicker(time.Second / mps)
 	fmsg := func(f int) {
-		fmt.Println("fmsg", f)
+		//fmt.Println("fmsg", f)
 		for i := len(chs) - 1; i >= 0; i-- {
 			chs[i] <- f
 		}
@@ -152,7 +162,7 @@ func chR(id int) {
 	for {
 		select {
 		case f := <-chs[id]:
-			fmt.Println("chR", id, f)
+			//fmt.Println("chR", id, f)
 			if schduleInLock && f%mps == 0 {
 				costLongTimeAndGosched()
 			}
