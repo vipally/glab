@@ -163,9 +163,6 @@ func chTellReaders(f int) {
 
 func chW() {
 	t := time.NewTicker(time.Second / mps)
-	fmsg := func(f int) {
-
-	}
 	for {
 		select {
 		case <-t.C:
