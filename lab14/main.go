@@ -19,14 +19,23 @@ import (
 
 const (
 	mps           = 20
-	finishSecs    = 300
+	finishSecs    = 30
 	readerCount   = 2000
 	busyCount     = 50
-	chLen         = 10
+	chLen         = 1
 	schduleInLock = true
 )
 
+var (
+	frame    int
+	mutex    sync.RWMutex
+	wg       sync.WaitGroup
+	chs      [readerCount]chan int
+	chWriter chan int
+)
+
 func init() {
+	chWriter = make(chan int, 100)
 	for i := len(chs) - 1; i >= 0; i-- {
 		chs[i] = make(chan int, chLen)
 	}
@@ -50,15 +59,9 @@ func main() {
 	now := time.Now()
 	fmt.Println(start, now, "costLongTimeAndGosched finish,cost ", now.Sub(start))
 	//Mutex1WnR()
-	Channel1WnR()
+	//Channel1WnR()
+	ChannelnW1R()
 }
-
-var (
-	frame int
-	mutex sync.RWMutex
-	wg    sync.WaitGroup
-	chs   [readerCount]chan int
-)
 
 func Mutex1WnR() {
 	//return
@@ -133,7 +136,11 @@ func busy(id int) {
 	b := big.NewInt(100)
 	for i := 1; i <= 10000000; i++ {
 		runtime.Gosched()
-		for j := 1; j <= 500; j++ {
+		count := 1000
+		if i%100 == 0 {
+			count = 5000
+		}
+		for j := 1; j <= count; j++ {
 			b.MulRange(int64(i), int64(j))
 		}
 	}
@@ -162,8 +169,10 @@ func Channel1WnR() {
 
 func chTellReaders(f int) {
 	log := (f/mps)%10 == 0
+	var start time.Time
 	if log {
-		fmt.Println("chTellReaders", f)
+		start = time.Now()
+		fmt.Println(start.Format("2006-01-02 15:04:05.999999999"), "chTellReaders", f)
 	}
 	for i := len(chs) - 1; i >= 0; i-- {
 		//fmt.Println("chW", i)
@@ -171,7 +180,8 @@ func chTellReaders(f int) {
 		//fmt.Println("chW", i, f)
 	}
 	if log {
-		fmt.Println(time.Now().Format("2006-01-02 15:04:05"), "chTellReaders end", f)
+		now := time.Now()
+		fmt.Println(now.Format("2006-01-02 15:04:05.999999999"), now.Sub(start), "chTellReaders end", f)
 	}
 }
 
@@ -205,6 +215,51 @@ func chR(id int) {
 			if f == finishSecs*mps {
 				wg.Done()
 				return
+			}
+		}
+	}
+}
+
+func ChannelnW1R() {
+	start := time.Now()
+	fmt.Printf("ChannelnW1R start time=%s, finishSecs=%d readerCount=%d,busyCount=%d chLen=%d\n", start.Format("2006-01-02 15:04:05"), finishSecs, readerCount, busyCount, chLen)
+	wg.Add(1 + readerCount)
+	go chMain()
+	for i := 0; i < readerCount; i++ {
+		go chWx(i)
+	}
+	for i := 1; i <= busyCount; i++ {
+		go busy(i)
+	}
+	wg.Wait()
+	now := time.Now()
+	fmt.Println(now, "ChannelnW1R finish,cost ", finishSecs, "->", now.Sub(start))
+}
+
+func chWx(id int) {
+	t := time.NewTicker(time.Second / mps)
+	for count := finishSecs * mps; count > 0; count-- {
+		select {
+		case <-t.C:
+			chWriter <- id
+		}
+	}
+	wg.Done()
+}
+
+func chMain() {
+	finishCount := 0
+	var cnt [readerCount]int
+	for {
+		select {
+		case id := <-chWriter:
+			cnt[id]++
+			c := cnt[id]
+			if c == finishSecs*mps {
+				if finishCount++; finishCount == readerCount {
+					wg.Done()
+					return
+				}
 			}
 		}
 	}
