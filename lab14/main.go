@@ -19,8 +19,8 @@ import (
 
 const (
 	mps           = 20
-	finishSecs    = 30
-	readerCount   = 2000
+	finishSecs    = 60
+	readerCount   = 5000
 	busyCount     = 50
 	chLen         = 1
 	schduleInLock = true
@@ -35,7 +35,7 @@ var (
 )
 
 func init() {
-	chWriter = make(chan int, 100)
+	chWriter = make(chan int, 10)
 	for i := len(chs) - 1; i >= 0; i-- {
 		chs[i] = make(chan int, chLen)
 	}
