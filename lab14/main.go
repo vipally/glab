@@ -22,7 +22,7 @@ const (
 	finishSecs    = 300
 	readerCount   = 2000
 	busyCount     = 50
-	chLen         = 5
+	chLen         = 10
 	schduleInLock = true
 )
 
@@ -49,7 +49,7 @@ func main() {
 	costLongTimeAndGosched()
 	now := time.Now()
 	fmt.Println(start, now, "costLongTimeAndGosched finish,cost ", now.Sub(start))
-	Mutex1WnR()
+	//Mutex1WnR()
 	Channel1WnR()
 }
 
@@ -146,7 +146,7 @@ func busy(id int) {
 func Channel1WnR() {
 	frame = 0
 	start := time.Now()
-	fmt.Printf("Mutex1WnR start time=%s, finishSecs=%d readerCount=%d,busyCount=%d\n", start.Format("2006-01-02 15:04:05"), finishSecs, readerCount, busyCount)
+	fmt.Printf("Mutex1WnR start time=%s, finishSecs=%d readerCount=%d,busyCount=%d chLen=%d\n", start.Format("2006-01-02 15:04:05"), finishSecs, readerCount, busyCount, chLen)
 	wg.Add(1 + readerCount)
 	for i := 0; i < readerCount; i++ {
 		go chR(i)
@@ -161,9 +161,17 @@ func Channel1WnR() {
 }
 
 func chTellReaders(f int) {
-	//fmt.Println("chTellReaders", f)
+	log := (f/mps)%10 == 0
+	if log {
+		fmt.Println("chTellReaders", f)
+	}
 	for i := len(chs) - 1; i >= 0; i-- {
+		//fmt.Println("chW", i)
 		chs[i] <- f
+		//fmt.Println("chW", i, f)
+	}
+	if log {
+		fmt.Println(time.Now().Format("2006-01-02 15:04:05"), "chTellReaders end", f)
 	}
 }
 
@@ -187,6 +195,7 @@ func chW() {
 
 func chR(id int) {
 	for {
+		//fmt.Println("chR", id)
 		select {
 		case f := <-chs[id]:
 			//fmt.Println("chR", id, f)
