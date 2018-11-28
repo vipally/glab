@@ -69,7 +69,7 @@ func Mutex1WnR() {
 	}
 	wg.Wait()
 	now := time.Now()
-	fmt.Println(now, "TestMutex1WnR fnish,cost ", finishSecs, "->", now.Sub(start))
+	fmt.Println(now, "TestMutex1WnR finish,cost ", finishSecs, "->", now.Sub(start))
 }
 
 func w() {
@@ -151,7 +151,7 @@ func Channel1WnR() {
 	}
 	wg.Wait()
 	now := time.Now()
-	fmt.Println(now, "TestChannel1WnR fnish,cost ", finishSecs, "->", now.Sub(start))
+	fmt.Println(now, "TestChannel1WnR finish,cost ", finishSecs, "->", now.Sub(start))
 }
 
 func chTellReaders(f int) {
