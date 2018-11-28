@@ -154,20 +154,24 @@ func Channel1WnR() {
 	fmt.Println(now, "TestChannel1WnR fnish,cost ", finishSecs, "->", now.Sub(start))
 }
 
+func chTellReaders(f int) {
+	//fmt.Println("chTellReaders", f)
+	for i := len(chs) - 1; i >= 0; i-- {
+		chs[i] <- f
+	}
+}
+
 func chW() {
 	t := time.NewTicker(time.Second / mps)
 	fmsg := func(f int) {
-		//fmt.Println("fmsg", f)
-		for i := len(chs) - 1; i >= 0; i-- {
-			chs[i] <- f
-		}
+
 	}
 	for {
 		select {
 		case <-t.C:
 			frame++
 			if schduleInLock && frame%mps == 0 {
-				fmsg(frame)
+				chTellReaders(frame)
 				costLongTimeAndGosched()
 			}
 			if frame == finishSecs*mps {
