@@ -20,7 +20,7 @@ import (
 const (
 	mps           = 20
 	finishSecs    = 60
-	readerCount   = 5000
+	readerCount   = 2000
 	busyCount     = 50
 	chLen         = 1
 	schduleInLock = true
