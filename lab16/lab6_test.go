@@ -52,3 +52,18 @@ func TestArray(t *testing.T) {
 		fmt.Printf("check %d %x\n", i+1, v)
 	}
 }
+
+//注意这个slice遍历的坑 range变量地址是不能在range外使用的
+//这个case会输出 ccc 而不是我们想要的abc
+func TestSliceRange(t *testing.T) {
+	s := []string{"a", "b", "c"}
+	ss := []*string{}
+
+	for _, v := range s {
+		ss = append(ss, &v)
+	}
+
+	for _, v := range ss {
+		fmt.Println(*v)
+	}
+}

@@ -30,16 +30,29 @@ some test code of golang
 ## lab7: interface inherit test
 
 ## lab8: interface nil test
-含有匿名成员的结构体 可以由父对象默认实现某个接口 达到实现某接口默认行为
-子对象可以实现该函数 覆盖父对象的默认行为
+	含有匿名成员的结构体 可以由父对象默认实现某个接口 达到实现某接口默认行为
+	子对象可以实现该函数 覆盖父对象的默认行为
 
 ## lab9: go parse
 
-## lab10: 递归的危害
+## lab10: disaster of recursive
 
 ## lab11: constant branch optimization 常量条件编译优化
 
 ## lab12: confused interface
+
+## lab13: timer test during system time rechange
+
+## lab14: channel and mutex test on 1WnR case
+
+## lab15: random for test dice
+
+## lab16: GUID:array.slice error when take address of range value
+	BUG:对range变量x进行取地址将会是一场灾难 因为go是值拷贝 并且range变量会在遍历期间重用
+	如果对该变量取地址 那么存下来的东西就只剩集合里面最后一个元素了
+	这个问题可以跟Go提一个issue，禁止对range变量取地址
+
+## lab17: Go dll test
 
 ## lab18: range slice & range map speed test
 	结论：对同样大小的slice和map执行range，对map的遍历慢10倍
