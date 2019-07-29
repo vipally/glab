@@ -57,5 +57,7 @@ some test code of golang
 ## lab18: range slice & range map speed test
 	结论：对同样大小的slice和map执行range，对map的遍历慢10倍
 
+## lab19 goroutine test
+
 
 	
