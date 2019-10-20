@@ -58,6 +58,9 @@ some test code of golang
 	结论：对同样大小的slice和map执行range，对map的遍历慢10倍
 
 ## lab19 goroutine test
+## lab20 string test
+ 对string range，得到的是rune字符序列，index不一定连续
+ 对string取下标 得到的是对应[]byte的字节
 
 
 	
