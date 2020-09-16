@@ -54,18 +54,18 @@ func (l *DebugRWMutex) log(fn string) func() {
 
 	start := time.Now()
 	gid := getGID()
-	fmt.Printf("[dbg-lock] %s %s beg [%s:%d-%s] - cid=%d gid=%d p=%p e=%d r=%d wr=%d w=%d ww=%d\n",
-		time.Now(), fn, file, line, cf, cid, gid, l, atomic.LoadUint64(&l.e),
+	fmt.Printf("%s [dbg-lock-beg  %-2s] [%s:%-4d-%s] %- 8s cid=%-6d gid=%-6d p=%p e=%-6d r=%-4d wr=%-4d w=%-4d ww=%-4d\n",
+		time.Now().Format("2006-01-02T15:04:05.000000"), fn, file, line, cf, "-", cid, gid, l, atomic.LoadUint64(&l.e),
 		atomic.LoadInt32(&l.r), atomic.LoadInt32(&l.wr), atomic.LoadInt32(&l.w), atomic.LoadInt32(&l.ww))
 	deferfun := func() {
 		cost := time.Now().Sub(start) / time.Millisecond * time.Millisecond
 		if cost > tooLongLock {
-			fmt.Printf("[dbg-lock-too-long] %s %s end [%s:%d-%s] t=%s cid=%d gid=%d p=%p e=%d r=%d wr=%d w=%d ww=%d\n",
-				time.Now(), fn, file, line, cf, cost, cid, gid, l, atomic.LoadUint64(&l.e),
+			fmt.Printf("%s [dbg-lock-enl %-2s] [%s:%-4d-%s] t=%- 6s cid=%-6d gid=%-6d p=%p e=%-6d r=%-4d wr=%-4d w=%-4d ww=%-4d\n",
+				time.Now().Format("2006-01-02T15:04:05.000000"), fn, file, line, cf, cost, cid, gid, l, atomic.LoadUint64(&l.e),
 				atomic.LoadInt32(&l.r), atomic.LoadInt32(&l.wr), atomic.LoadInt32(&l.w), atomic.LoadInt32(&l.ww))
 		} else {
-			fmt.Printf("[dbg-lock] %s %s end [%s:%d-%s] t=%s cid=%d gid=%d p=%p e=%d r=%d wr=%d w=%d ww=%d\n",
-				time.Now(), fn, file, line, cf, cost, cid, gid, l, atomic.LoadUint64(&l.e),
+			fmt.Printf("%s [dbg-lock-end  %-2s] [%s:%-4d-%s] t=%- 6s cid=%-6d gid=%-6d p=%p e=%-6d r=%-4d wr=%-4d w=%-4d ww=%-4d\n",
+				time.Now().Format("2006-01-02T15:04:05.000000"), fn, file, line, cf, cost, cid, gid, l, atomic.LoadUint64(&l.e),
 				atomic.LoadInt32(&l.r), atomic.LoadInt32(&l.wr), atomic.LoadInt32(&l.w), atomic.LoadInt32(&l.ww))
 		}
 	}
