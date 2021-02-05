@@ -12,7 +12,7 @@ func main() {
 		Flags: []cli.Flag{
 			&cli.BoolFlag{
 				Name:    "bool",
-				Value:   true,
+				Value:   false,
 				Aliases: []string{"b"},
 			},
 			&cli.StringFlag{
@@ -60,25 +60,29 @@ func main() {
 		},
 	}
 	args := []string{
-		"cli_bug.exe",
+		"lab23",
+		"-b", // "false",
 		"--string", "setstring1",
-		"--bool", "false",
-		"-b", "false",
-		"--string", "setstring1",
-		"-s", "setstring2",
 		"--int", "13",
-		"-i", "14",
 		"--stringSlice", "stringSlice",
-		"-ss", "ss",
 		"--float64Slice", "13.3",
-		"-f64s", "14.4",
 		"--int64Slice", "13",
-		"-i64s", "14",
 		"--intSlice", "13",
-		"-is", "14",
 	}
 	fmt.Printf("args: %+v\n\n", args)
 	if err := app.Run(args); err != nil {
 		panic(err)
 	}
+
+	/*
+		GLOBAL OPTIONS:
+		   --bool, -b                          (default: false)
+		   --string value, -s value            (default: "default")
+		   --int value, -i value               (default: 1)
+		   --stringSlice value, --ss value     (default: "stringSlice") // bug expect: (default: "default1", "default2")
+		   --float64Slice value, --f64s value  (default: 13.3)			// bug expect: (default: 1.1, 2.2)
+		   --int64Slice value, --i64s value    (default: 13)			// bug expect: (default: 1, 2)
+		   --intSlice value, --is value        (default: 13)			// bug expect: (default: 1, 2)
+		   --help, -h                          show help (default: false)
+	*/
 }
