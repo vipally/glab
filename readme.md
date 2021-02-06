@@ -62,11 +62,13 @@ some test code of golang
  对string range，得到的是rune字符序列，index不一定连续
  对string取下标 得到的是对应[]byte的字节
 
-## lab21
+## lab21 some test of std.flag
 
-## lab22
+## lab22 debug-lock with full lock-epoch log
 
-## lab23 [https://github.com/urfave/cli](https://github.com/urfave/cli)bug report
+## lab23 [https://github.com/urfave/cli](https://github.com/urfave/cli/issues/1235)bug report
+
+## lab24 [https://github.com/urfave/cli](https://github.com/urfave/cli/issues/1206)bug report
 
 
 	
