@@ -94,6 +94,7 @@ func main() {
 		panic(err)
 	}
 
+	// Flags defalt value change with the env values
 	/*
 		FlagNames [b bool f64s float64Slice i i64s int int64Slice intSlice is s ss string stringSlice]
 		0 b true

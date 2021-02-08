@@ -66,9 +66,12 @@ some test code of golang
 
 ## lab22 debug-lock with full lock-epoch log
 
-## lab23 [https://github.com/urfave/cli](https://github.com/urfave/cli/issues/1235)bug report
+## lab23 [v2 bug: default value changes with parsed values on slice flags](https://github.com/urfave/cli/issues/1235)bug report
 
-## lab24 [https://github.com/urfave/cli](https://github.com/urfave/cli/issues/1206)bug report
+## lab24 [v2 bug: Flag default value is overwritten by environment in help output.](https://github.com/urfave/cli/issues/1206)bug report
+
+## lab25 [v2 bug: Accept multi values on slice flags](https://github.com/urfave/cli/issues/1206)bug report
+
 
 
 	

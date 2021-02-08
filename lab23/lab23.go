@@ -74,6 +74,7 @@ func main() {
 		panic(err)
 	}
 
+	// Flags defalt value change with the parsed values
 	/*
 		GLOBAL OPTIONS:
 		   --bool, -b                          (default: false)
