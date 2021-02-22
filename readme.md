@@ -72,7 +72,7 @@ some test code of golang
 
 ## lab25 [v2 bug: Accept multi values on slice flags](https://github.com/urfave/cli/issues/1238)bug report
 
-## lab26 [v2 bug: bug: slice flag value don't append to default values from ENV or file](https://github.com/urfave/cli/issues/1238)bug report
+## lab26 [v2 bug: slice flag value don't append to default values from ENV or file](https://github.com/urfave/cli/issues/1238)bug report
 
 
 
