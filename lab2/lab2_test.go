@@ -1,4 +1,4 @@
-package lab2
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 //Recursive
-const N uint64 = 45
+const N uint64 = 47
 
 func init() {
 	fmt.Println("N =", N)
