@@ -74,7 +74,7 @@ some test code of golang
 
 ## lab26 [v2 bug: slice flag value don't append to default values from ENV or file](https://github.com/urfave/cli/issues/1238)bug report
 
-## lab27 encoding/json: add FlexObject for encoding/decoding JSON between flex Go types.
+## lab27 encoding/json: add FlexObject for encoding/decoding between JSON and flex Go types.
 
 
 
