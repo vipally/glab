@@ -6,7 +6,7 @@ import (
 	"reflect"
 )
 
-// jsonFactory impliments a factory that can create multi products by type name
+// Factory impliments a factory that can create multi products by type name
 type Factory struct {
 	mp map[string]reflect.Type
 }
@@ -46,7 +46,7 @@ func (f *Factory) Create(name string) (interface{}, error) {
 	return reflect.New(t).Interface(), nil
 }
 
-// UnmarshalJSONForObj create the real object and ummarshal it for FlexObject
+// UnmarshalJSONForFlexObj create the real object and ummarshal it for FlexObject
 func (f *Factory) UnmarshalJSONForFlexObj(kind string, obj *json.FlexObject) error {
 	p, err := f.Create(kind)
 	if err != nil {

@@ -49,6 +49,9 @@ func TestFlexObjectFactory(t *testing.T) {
 		factory.UnmarshalJSONForFlexObj(v.Kind, &v.Attr)
 		fmt.Printf("index %d, kind=%s attr=%#v\n", i, v.Kind, v.Attr.D)
 	}
+	// Output:
+	// index 0, kind=dog attr=&lab27.DogAttr{Type:"Collie", Color:"black"}
+	// index 1, kind=duck attr=&lab27.DuckAttr{Weight:1.2}
 }
 
 func TestGenerateJsonByFlexObject(t *testing.T) {
@@ -73,4 +76,20 @@ func TestGenerateJsonByFlexObject(t *testing.T) {
 	}
 	b, _ := json.MarshalIndent(animals, "", "  ")
 	fmt.Println(string(b))
+	// Ooutput:
+	// [
+	//  {
+	//    "kind": "dog",
+	//    "attr": {
+	//      "type": "Collie",
+	//      "color": "white"
+	//    }
+	//  },
+	//  {
+	//    "kind": "duck",
+	//    "attr": {
+	//      "Weight": 2.34
+	//    }
+	//  }
+	// ]
 }
