@@ -24,11 +24,6 @@ var sampleJson = []byte(`
 ]
 `)
 
-type Animal struct {
-	Kind string          `json:"kind"`
-	Attr json.FlexObject `json:"attr"`
-}
-
 type DogAttr struct {
 	Type  string `json:"type"`
 	Color string `json:"color"`
@@ -43,6 +38,10 @@ func TestFlexObjectFactory(t *testing.T) {
 	factory.MustReg("dog", (*DogAttr)(nil))
 	factory.MustReg("duck", (*DuckAttr)(nil))
 
+	type Animal struct {
+		Kind string          `json:"kind"`
+		Attr json.FlexObject `json:"attr"`
+	}
 	var animals []Animal
 	json.Unmarshal(sampleJson, &animals)
 	for i, v := range animals {
@@ -55,6 +54,10 @@ func TestFlexObjectFactory(t *testing.T) {
 }
 
 func TestGenerateJsonByFlexObject(t *testing.T) {
+	type Animal struct {
+		Kind string          `json:"kind"`
+		Attr json.FlexObject `json:"attr"`
+	}
 	var animals = []Animal{
 		Animal{
 			Kind: "dog",

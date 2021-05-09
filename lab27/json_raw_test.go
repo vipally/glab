@@ -7,14 +7,14 @@ import (
 )
 
 func TestDecodeRaw(t *testing.T) {
-	type AnimalRaw struct {
-		Kind string          `json:"kind"`
-		Attr json.RawMessage `json:"attr"`
-	}
 	var factory = NewFactory()
 	factory.MustReg("dog", (*DogAttr)(nil))
 	factory.MustReg("duck", (*DuckAttr)(nil))
 
+	type AnimalRaw struct {
+		Kind string          `json:"kind"`
+		Attr json.RawMessage `json:"attr"`
+	}
 	var animals []AnimalRaw
 	json.Unmarshal(sampleJson, &animals)
 	for i, v := range animals {
