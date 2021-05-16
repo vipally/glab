@@ -56,7 +56,7 @@ func (v *Version4) s(n, x, depth int) (percent float64) {
 }
 
 func main4() {
-	M := 50
+	M := 100000
 	for N := M; N <= M; N++ {
 		v := &Version4{}
 		start := time.Now()
