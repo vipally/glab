@@ -24,6 +24,12 @@ var (
 //这是递归fuck cpu的又一个例子
 
 func TestR(t *testing.T) {
+	n := 51539607551
+	for i := 0; i < 14; i++ {
+		n = n*2 + 1
+	}
+	println(n)
+	return
 	if use_recursive {
 		N := int(32)
 		for i := 1; i <= N; i++ {
