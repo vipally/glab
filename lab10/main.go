@@ -1,7 +1,7 @@
 package main
 
 func main() {
-	sel := 2
+	sel := 4
 	switch sel {
 	case 1:
 		main1()

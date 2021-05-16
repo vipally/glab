@@ -20,6 +20,7 @@ func (v *Version3) R(n, depth int) (percent float64) {
 	if len(v.known) >= n { //result is known, use the result
 		return v.known[n-1]
 	}
+	//println(n, depth, len(v.known))
 	if depth > v.maxDepth {
 		v.maxDepth = depth
 	}
@@ -47,8 +48,8 @@ func (v *Version3) s(n, x, depth int) (percent float64) {
 }
 
 func main3() {
-	NN := 50000
-	for N := NN; N <= NN; N++ {
+	M := 50
+	for N := M; N <= M; N++ {
 		v := &Version3{}
 		start := time.Now()
 		rate := v.R(N, 1)
@@ -56,5 +57,7 @@ func main3() {
 		fmt.Printf("v3 N=%-2d R=%-5.1f T=%-10s RD=%-2d Fc=%d\n", N, rate, dur, v.maxDepth, v.fnCallCnt)
 	}
 	// output:
-
+	// v3 N=50     R=50.0  T=0s         RD=49 Fc=49
+	// v3 N=50000  R=50.0  T=10.254s    RD=49999 Fc=49999
+	// v3 N=100000 R=50.0  T=39.489s    RD=99999 Fc=99999
 }
