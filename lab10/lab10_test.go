@@ -1,4 +1,4 @@
-package lab10_test
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 const (
-	use_recursive = false //是否使用递归算法
+	use_recursive = true //是否使用递归算法
 
 )
 
