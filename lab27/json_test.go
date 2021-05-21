@@ -45,7 +45,7 @@ func TestFlexObjectFactory(t *testing.T) {
 	var animals []Animal
 	json.Unmarshal(sampleJson, &animals)
 	for i, v := range animals {
-		factory.UnmarshalJSONForFlexObj(v.Kind, &v.Attr)
+		factory.DelayedFlexObjectJSONUnmarshal(v.Kind, &v.Attr)
 		fmt.Printf("index %d, kind=%s attr=%#v\n", i, v.Kind, v.Attr.D)
 	}
 	// Output:

@@ -2,6 +2,7 @@ package lab27
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"reflect"
 )
@@ -47,11 +48,15 @@ func (f *Factory) Create(name string) (interface{}, error) {
 }
 
 // UnmarshalJSONForFlexObj create the real object and ummarshal it for FlexObject
-func (f *Factory) UnmarshalJSONForFlexObj(kind string, obj *json.FlexObject) error {
+func (f *Factory) DelayedFlexObjectJSONUnmarshal(kind string, obj *json.FlexObject) error {
+	b, ok := obj.D.([]byte)
+	if !ok {
+		return errors.New("FlexObject type isn't []byte")
+	}
 	p, err := f.Create(kind)
 	if err != nil {
 		return err
 	}
 	obj.D = p
-	return json.Unmarshal(obj.Raw, obj.D)
+	return json.Unmarshal(b, obj.D)
 }
