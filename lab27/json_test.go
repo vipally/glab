@@ -33,6 +33,33 @@ type DuckAttr struct {
 	Weight float64
 }
 
+func TestFlexObjectDecode(t *testing.T) {
+	type Animal struct {
+		Kind string          `json:"kind"`
+		Attr json.FlexObject `json:"attr"`
+	}
+	var animals []Animal
+	json.Unmarshal(sampleJson, &animals)
+	for i, v := range animals {
+		var d interface{}
+		switch v.Kind {
+		case "dog":
+			d = &DogAttr{}
+		case "duck":
+			d = &DuckAttr{}
+		default:
+			t.Fatalf("unsupport kind %s", v.Kind)
+		}
+		if err := v.Attr.DelayedUnmarshalJSON(d); err != nil {
+			t.Fatal(err)
+		}
+		fmt.Printf("index %d, kind=%s attr=%#v\n", i, v.Kind, v.Attr.D)
+	}
+	// Output:
+	// index 0, kind=dog attr=&lab27.DogAttr{Type:"Collie", Color:"black"}
+	// index 1, kind=duck attr=&lab27.DuckAttr{Weight:1.2}
+}
+
 func TestFlexObjectFactory(t *testing.T) {
 	var factory = NewFactory()
 	factory.MustReg("dog", (*DogAttr)(nil))
