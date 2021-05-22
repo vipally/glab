@@ -33,7 +33,7 @@ type DuckAttr struct {
 	Weight float64
 }
 
-func TestFlexObjectDecode(t *testing.T) {
+func TestDecodeFlexObject(t *testing.T) {
 	type Animal struct {
 		Kind string          `json:"kind"`
 		Attr json.FlexObject `json:"attr"`
@@ -50,7 +50,7 @@ func TestFlexObjectDecode(t *testing.T) {
 		default:
 			t.Fatalf("unsupport kind %s", v.Kind)
 		}
-		if err := v.Attr.DelayedUnmarshalJSON(d); err != nil {
+		if err := v.Attr.DelayedUnmarshalJSON(d); err != nil { // delay decoding FlexObject
 			t.Fatal(err)
 		}
 		fmt.Printf("index %d, kind=%s attr=%#v\n", i, v.Kind, v.Attr.D)
