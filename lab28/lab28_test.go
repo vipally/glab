@@ -30,28 +30,26 @@ func _TestDecodeToNil(t *testing.T) {
 	// panic: reflect: call of reflect.Value.Type on zero Value
 }
 
-func TestDecodeToInterface(t *testing.T) {
+func _TestDecodeToValue(t *testing.T) {
 	if true {
-		txt := `[123, "foo"]`
-		var d []interface{}
-
-		s := fmt.Sprintf(`[%s]`, txt)
-		err := json.Unmarshal([]byte(s), &d)
+		txt := []byte(`"foo"`)
+		var d string
+		err := json.Unmarshal(txt, d)
 		fmt.Printf("json:d=%#v err=%v\n", d, err)
 	}
 	// output:
-	// json:d=[]interface {}{[]interface {}{123, "foo"}} err=<nil>
+	// json:d="" err=json: Unmarshal(non-pointer string)
 
 	if true {
-		txt := `[123, "foo"]`
-		var d []interface{}
-
-		s := fmt.Sprintf(`- %s`, txt)
-		err := yaml.Unmarshal([]byte(s), &d)
-		fmt.Printf("yaml:d=%#v err=%v\n", d, err)
+		txt := []byte(`"foo"`)
+		var d string
+		err := yaml.Unmarshal(txt, d)
+		fmt.Printf("json:d=%#v err=%v\n", d, err)
 	}
 	// output:
-	// yaml:d=[]interface {}{[]interface {}{123, "foo"}} err=<nil>
+	// panic: reflect: reflect.Value.Set using unaddressable value [recovered]
+	// panic: reflect: reflect.Value.Set using unaddressable value [recovered]
+	// panic: reflect: reflect.Value.Set using unaddressable value
 }
 
 func TestDecodeToMap(t *testing.T) {
@@ -72,4 +70,35 @@ func TestDecodeToMap(t *testing.T) {
 	}
 	// output:
 	// json:d=map[string]interface {}{"a":123, "b":"foo"} err=<nil>
+}
+
+func TestDecodeToInterface(t *testing.T) {
+	if true {
+		txt := `
+[
+  123, 
+  "foo"
+]
+`
+		var d []interface{}
+
+		s := fmt.Sprintf(`[%s]`, txt)
+		err := json.Unmarshal([]byte(s), &d)
+		fmt.Printf("json:d=%#v err=%v\n", d, err)
+	}
+	// output:
+	// json:d=[]interface {}{[]interface {}{123, "foo"}} err=<nil>
+
+	if true {
+		txt := `
+- 123
+- "foo"
+`
+		var d []interface{}
+		s := fmt.Sprintf(`[%s]`, txt)
+		err := yaml.Unmarshal([]byte(s), &d)
+		fmt.Printf("yaml:d=%#v err=%v\n", d, err)
+	}
+	// output:
+	// yaml:d=[]interface {}(nil) err=yaml: line 1: did not find expected node content
 }
