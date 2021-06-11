@@ -44,7 +44,7 @@ func _TestDecodeToValue(t *testing.T) {
 		txt := []byte(`"foo"`)
 		var d string
 		err := yaml.Unmarshal(txt, d)
-		fmt.Printf("json:d=%#v err=%v\n", d, err)
+		fmt.Printf("yaml:d=%#v err=%v\n", d, err)
 	}
 	// output:
 	// panic: reflect: reflect.Value.Set using unaddressable value [recovered]
@@ -66,10 +66,10 @@ func TestDecodeToMap(t *testing.T) {
 		txt := []byte(`{"a":123, "b":"foo"}`)
 		var d = map[string]interface{}{}
 		err := yaml.Unmarshal(txt, d)
-		fmt.Printf("json:d=%#v err=%v\n", d, err)
+		fmt.Printf("yaml:d=%#v err=%v\n", d, err)
 	}
 	// output:
-	// json:d=map[string]interface {}{"a":123, "b":"foo"} err=<nil>
+	// yaml:d=map[string]interface {}{"a":123, "b":"foo"} err=<nil>
 }
 
 func TestDecodeToInterface(t *testing.T) {
