@@ -76,6 +76,8 @@ some test code of golang
 
 ## lab27 encoding/json: add FlexObject for encoding/decoding between JSON and flex Go types.
 
+## lab28 json/yaml marshal test
+
 
 
 
