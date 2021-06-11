@@ -52,5 +52,24 @@ func TestDecodeToInterface(t *testing.T) {
 	}
 	// output:
 	// yaml:d=[]interface {}{[]interface {}{123, "foo"}} err=<nil>
+}
 
+func TestDecodeToMap(t *testing.T) {
+	if true {
+		txt := []byte(`{"a":123, "b":"foo"}`)
+		var d = map[string]int{}
+		err := json.Unmarshal(txt, d)
+		fmt.Printf("json:d=%#v err=%v\n", d, err)
+	}
+	// output:
+	// json:d=map[string]int{} err=json: Unmarshal(non-pointer map[string]int)
+
+	if true {
+		txt := []byte(`{"a":123, "b":"foo"}`)
+		var d = map[string]interface{}{}
+		err := yaml.Unmarshal(txt, d)
+		fmt.Printf("json:d=%#v err=%v\n", d, err)
+	}
+	// output:
+	// json:d=map[string]interface {}{"a":123, "b":"foo"} err=<nil>
 }
