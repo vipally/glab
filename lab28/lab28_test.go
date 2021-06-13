@@ -80,9 +80,9 @@ func TestDecodeToInterface(t *testing.T) {
   "foo"
 ]
 `
-		var d []interface{}
+		var d interface{}
 
-		s := fmt.Sprintf(`[%s]`, txt)
+		s := fmt.Sprintf(`%s`, txt)
 		err := json.Unmarshal([]byte(s), &d)
 		fmt.Printf("json:d=%#v err=%v\n", d, err)
 	}
@@ -94,8 +94,8 @@ func TestDecodeToInterface(t *testing.T) {
 - 123
 - "foo"
 `
-		var d []interface{}
-		s := fmt.Sprintf(`[%s]`, txt)
+		var d interface{}
+		s := fmt.Sprintf(`%s`, txt)
 		err := yaml.Unmarshal([]byte(s), &d)
 		fmt.Printf("yaml:d=%#v err=%v\n", d, err)
 	}
