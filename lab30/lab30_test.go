@@ -3,8 +3,10 @@ package lab30
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"reflect"
+	"sort"
 	"strconv"
 	"testing"
 )
@@ -13,6 +15,8 @@ func TestReflect(t *testing.T) {
 	var d testCase
 	d.init()
 	fmt.Println(d.accessAll(d.data))
+	fmt.Println("------------")
+	fmt.Println(d.accessAllInter(d.data))
 }
 
 type testCase struct {
@@ -137,4 +141,73 @@ func division(key string) string {
 		key = key + "."
 	}
 	return key
+}
+
+//------------------------------------------------------------------------------
+
+func (c *testCase) accessAllInter(data interface{}) string {
+	c.buf.Reset()
+	c.accessInterface("", data, 0)
+	return c.buf.String()
+}
+
+func (c *testCase) accessInterface(name string, d interface{}, depth int) error {
+	if depth >= 10 {
+		return errors.New("buildQuery out of recursion")
+	}
+	writeSingle := func(v interface{}) {
+		c.buf.WriteString(fmt.Sprintf("%s=%v\n", name, d))
+	}
+	fromBytes := func(v []byte) error {
+		var x interface{}
+		if err := json.Unmarshal(v, &x); err != nil {
+			return err
+		}
+		return c.accessInterface(name, x, depth+1)
+	}
+	switch v := d.(type) {
+	case string:
+		writeSingle(v)
+	case float64:
+		writeSingle(v)
+	case bool:
+		writeSingle(v)
+	case map[string]interface{}:
+		names := make([]string, 0, len(v))
+		for k := range v {
+			names = append(names, k)
+		}
+		sort.Strings(names)
+		for _, k := range names {
+			n := k
+			if name != "" {
+				n = fmt.Sprintf("%s.%s", name, k)
+			}
+			if val := v[k]; val != nil {
+				if err := c.accessInterface(n, v[k], depth+1); err != nil {
+					return err
+				}
+			}
+		}
+	case []interface{}:
+		if name != "" {
+			for i, vv := range v {
+				n := fmt.Sprintf("%s.%d", name, i+1)
+				c.accessInterface(n, vv, depth+1)
+			}
+		}
+	//--------------------------------------------------------------------------
+	default:
+		b, err := json.Marshal(d)
+		if err != nil {
+			return err
+		}
+		return fromBytes(b)
+	case []byte:
+		return fromBytes(v)
+	case json.RawMessage:
+		return fromBytes([]byte(v))
+	}
+	return nil
+	return nil
 }
