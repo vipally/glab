@@ -17,6 +17,19 @@ func TestReflect(t *testing.T) {
 	fmt.Println(d.accessAll(d.data))
 	fmt.Println("------------")
 	fmt.Println(d.accessAllInter(d.data))
+	var x []interface{} = []interface{}{
+		map[string]interface{}{
+			"a": "foo",
+			"b": 123,
+		},
+	}
+	b, _ := json.MarshalIndent(x, "", "  ")
+	var xx interface{}
+	json.Unmarshal(b, &xx)
+	fmt.Println(reflect.TypeOf(x[0]).Kind().String(), reflect.ValueOf(x[0]).Kind().String())
+	valueOfValue := reflect.ValueOf(x)
+	x0 := valueOfValue.Index(0).Interface()
+	fmt.Println(reflect.TypeOf(x0).Kind().String(), reflect.ValueOf(x0).Kind().String())
 }
 
 type testCase struct {
